@@ -41,8 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
     serviceButtons.forEach(button => {
         button.addEventListener('click', () => {
             const service = button.getAttribute('data-service');
-            // Here you would typically fetch the service details from a database or API
-            // For this example, we'll use hardcoded data
             const serviceDetails = {
                 lavado: {
                     title: "Lavado y Encerado Premium",
@@ -170,11 +168,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form submission (you'll need to implement the actual form submission logic)
+    // Form submission
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        // Here you would typically send the form data to your server
+        // Aquí deberías implementar la lógica real de envío del formulario
         alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
         contactForm.reset();
     });
@@ -201,4 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
             deferredPrompt = null;
         });
     });
+
+    console.log("Script cargado y listeners añadidos para los botones 'Ver más' y 'Ver trabajos'.");
 });
