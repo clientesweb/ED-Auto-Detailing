@@ -124,20 +124,6 @@
         .footer-spacing {
             padding-bottom: calc(4rem + env(safe-area-inset-bottom));
         }
-
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            background-color: #f3f4f6;
-            color: #374151;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active {
-            background-color: #8B0000;
-            color: white;
-        }
     </style>
 </head>
 <body class="font-sans">
@@ -321,13 +307,6 @@
         <section id="gallery" class="py-16 bg-gray-100">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Nuestra Galería</h2>
-                <div class="flex justify-center space-x-4 mb-8">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="lavado">Lavado</button>
-                    <button class="filter-btn" data-filter="interior">Interior</button>
-                    <button class="filter-btn" data-filter="pintura">Pintura</button>
-                    <button class="filter-btn" data-filter="ceramica">Cerámica</button>
-                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <!-- Gallery Item -->
                     <div class="gallery-item" data-category="lavado" data-images='[
@@ -409,171 +388,180 @@
             </div>
         </section>
 
-        <!-- YouTube Video Section -->
-        <section id="youtube-video" class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Nuestro Canal de YouTube</h2>
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe class="w-full h-[500px]" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </section>
-
         <!-- Testimonials with Auto-scroll -->
         <section id="testimonials" class="py-16 bg-gray-100 overflow-hidden">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Lo que dicen nuestros clientes</h2>
+                <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Lo que Dicen Nuestros Clientes</h2>
                 <div class="relative">
-                    <div class="testimonials-auto-scroll flex space-x-6">
+                    <div class="testimonials-auto-scroll flex">
                         <!-- Testimonial Cards -->
-                        <div class="flex-none w-96 bg-white p-6 rounded-lg shadow-md">
-                            <div class="flex items-center mb-4">
-                                <img src="/images/testimonials/client1.jpg" alt="Cliente 1" class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h3 class="font-semibold">Juan Pérez</h3>
-                                    <div class="flex text-yellow-400">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                        <div class="flex-none w-96 p-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex items-center mb-4">
+                                    <img src="/images/testimonials/client1.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-semibold">María González</h3>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
+                                <p>"Servicio excepcional. Mi auto quedó como nuevo después del detallado completo."</p>
                             </div>
-                            <p class="text-gray-600">"Increíble servicio. Mi coche parece nuevo después del detallado. Altamente recomendado."</p>
                         </div>
-                        
-                        <div class="flex-none w-96 bg-white p-6 rounded-lg shadow-md">
-                            <div class="flex items-center mb-4">
-                                <img src="/images/testimonials/client2.jpg" alt="Cliente 2" class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h3 class="font-semibold">María González</h3>
-                                    <div class="flex text-yellow-400">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
+                        <div class="flex-none w-96 p-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex items-center mb-4">
+                                    <img src="/images/testimonials/client2.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-semibold">Carlos Rodríguez</h3>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
                                     </div>
                                 </div>
+                                <p>"Increíble atención al detalle. El equipo de ED Auto Detailing realmente se preocupa por tu vehículo."</p>
                             </div>
-                            <p class="text-gray-600">"Excelente atención al cliente y resultados impresionantes. Volveré seguro."</p>
                         </div>
-                        
-                        <div class="flex-none w-96 bg-white p-6 rounded-lg shadow-md">
-                            <div class="flex items-center mb-4">
-                                <img src="/images/testimonials/client3.jpg" alt="Cliente 3" class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h3 class="font-semibold">Carlos Rodríguez</h3>
-                                    <div class="flex text-yellow-400">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                        <div class="flex-none w-96 p-4">
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <div class="flex items-center mb-4">
+                                    <img src="/images/testimonials/client3.jpg" alt="Cliente" class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-semibold">Laura Martínez</h3>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
+                                <p>"La protección cerámica que aplicaron a mi coche es asombrosa. Sigue luciendo como nuevo después de meses."</p>
                             </div>
-                            <p class="text-gray-600">"La protección cerámica que aplicaron a mi coche es asombrosa. Vale cada centavo."</p>
-                        </div>
-                        
-                        <!-- Duplicate testimonials for continuous scroll -->
-                        <div class="flex-none w-96 bg-white p-6 rounded-lg shadow-md">
-                            <div class="flex items-center mb-4">
-                                <img src="/images/testimonials/client1.jpg" alt="Cliente 1" class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h3 class="font-semibold">Juan Pérez</h3>
-                                    <div class="flex text-yellow-400">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600">"Increíble servicio. Mi coche parece nuevo después del detallado. Altamente recomendado."</p>
-                        </div>
-                        
-                        <div class="flex-none w-96 bg-white p-6 rounded-lg shadow-md">
-                            <div class="flex items-center mb-4">
-                                <img src="/images/testimonials/client2.jpg" alt="Cliente 2" class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h3 class="font-semibold">María González</h3>
-                                    <div class="flex text-yellow-400">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600">"Excelente atención al cliente y resultados impresionantes. Volveré seguro."</p>
-                        </div>
-                        
-                        <div class="flex-none w-96 bg-white p-6 rounded-lg shadow-md">
-                            <div class="flex items-center mb-4">
-                                <img src="/images/testimonials/client3.jpg" alt="Cliente 3" class="w-12 h-12 rounded-full mr-4">
-                                <div>
-                                    <h3 class="font-semibold">Carlos Rodríguez</h3>
-                                    <div class="flex text-yellow-400">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="text-gray-600">"La protección cerámica que aplicaron a mi coche es asombrosa. Vale cada centavo."</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Form Section -->
-        <section id="contact" class="py-16 bg-white">
+        <!-- App Installation Section (Updated Design) -->
+        <section id="app-install" class="py-16 app-gradient-bg text-white">
             <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Contáctenos</h2>
-                <div class="max-w-2xl mx-auto">
-                    <form id="contactForm" class="space-y-4">
-                        <div>
-                            <label for="name" class="block mb-2 font-semibold">Nombre</label>
-                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="w-full md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                        <h2 class="text-4xl font-bold mb-4">Descarga Nuestra Aplicación</h2>
+                        <p class="text-xl mb-8">Mantente conectado con las últimas noticias y servicios de ED Auto Detailing descargando nuestra aplicación móvil.</p>
+                        <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="#" class="inline-block bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition">
+                                <div class="flex items-center">
+                                    <i class="fab fa-android text-2xl mr-2"></i>
+                                    <div class="text-left">
+                                        <div class="text-xs">Disponible en</div>
+                                        <div class="text-sm font-semibold">Google Play</div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="#" class="inline-block bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-900 transition">
+                                <div class="flex items-center">
+                                    <i class="fab fa-apple text-2xl mr-2"></i>
+                                    <div class="text-left">
+                                        <div class="text-xs">Descarga en</div>
+                                        <div class="text-sm font-semibold">App Store</div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div>
-                            <label for="email" class="block mb-2 font-semibold">Correo Electrónico</label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color">
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <img src="/images/app-mockup.png" alt="ED Auto Detailing App" class="w-full max-w-md mx-auto md:ml-auto drop-shadow-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Contáctanos</h2>
+                <div class="flex flex-wrap -mx-4">
+                    <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0" data-aos="fade-up" data-aos-delay="200">
+                        <form id="contactForm" class="bg-white p-6 rounded-lg shadow-lg">
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium mb-2">Nombre</label>
+                                <input type="text" id="name" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium mb-2">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color">
+                            </div>
+                            <div class="mb-4">
+                                <label for="phone" class="block text-sm font-medium mb-2">Teléfono</label>
+                                <input type="tel" id="phone" name="phone" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color">
+                            </div>
+                            <div class="mb-4">
+                                <label for="service" class="block text-sm font-medium mb-2">Servicio de Interés</label>
+                                <select id="service" name="service" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color">
+                                    <option value="">Seleccione un servicio</option>
+                                    <option value="Lavado y Encerado">Lavado y Encerado</option>
+                                    <option value="Detallado Interior">Detallado Interior</option>
+                                    <option value="Corrección de Pintura">Corrección de Pintura</option>
+                                    <option value="Protección Cerámica">Protección Cerámica</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-medium mb-2">Mensaje</label>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-color"></textarea>
+                            </div>
+                            <button type="submit" class="w-full gradient-bg text-white px-4 py-2 rounded-full hover:opacity-90 transition">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                    <div class="w-full md:w-1/2 px-4" data-aos="fade-up" data-aos-delay="400">
+                        <div class="bg-white p-6 rounded-lg shadow-lg h-full">
+                            <h3 class="text-xl font-semibold mb-4 text-primary-color">Información de Contacto</h3>
+                            <p class="mb-2"><i class="fas fa-map-marker-alt mr-2 text-primary-color"></i> Miami, Florida 33101</p>
+                            <p class="mb-2"><i class="fas fa-phone mr-2 text-primary-color"></i> +1 939 270-9413</p>
+                            <p class="mb-4"><i class="fas fa-envelope mr-2 text-primary-color"></i> info@edautodetailing.com</p>
+                            <div class="mb-4">
+                                <h4 class="text-lg font-semibold mb-2 text-primary-color">Horario de Atención</h4>
+                                <p>Lunes - Sábado: 9:00 AM - 6:00 PM</p>
+                                <p>Domingo: Cerrado</p>
+                            </div>
+                            <div class="aspect-w-16 aspect-h-9">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57532.37248425836!2d-80.22063651525875!3d25.782545331689167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b0a20ec8c111%3A0xff96f271ddad4f65!2sMiami%2C%20FL!5e0!3m2!1sen!2sus!4v1652345678901!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
                         </div>
-                        <div>
-                            <label for="phone" class="block mb-2 font-semibold">Teléfono</label>
-                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color">
-                        </div>
-                        <div>
-                            <label for="message" class="block mb-2 font-semibold">Mensaje</label>
-                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="gradient-bg text-white px-6 py-2 rounded-full hover:opacity-90 transition">Enviar Mensaje</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with Bottom Menu Spacing -->
     <footer class="gradient-bg text-white py-8 footer-spacing">
         <div class="container mx-auto px-4">
             <div class="flex flex-wrap justify-between">
-                <div class="w-full md:w-1/4 mb-8 md:mb-0">
-                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-7v0JgwNnUbRzEyyOF2V9wNjWLfNIG1.png" alt="ED Auto Detailing Logo" class="h-16 w-auto mb-4">
-                    <p class="text-sm">Transformando vehículos con pasión y precisión en Miami, Florida.</p>
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-7v0JgwNnUbRzEyyOF2V9wNjWLfNIG1.png" alt="ED Auto Detailing Logo" class="h-20 w-auto mb-4">
+                    <p class="mb-4">Servicios profesionales de detallado automotriz en Miami, Florida. Nos comprometemos a hacer que su vehículo luzca lo mejor posible.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-secondary-color transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-secondary-color transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-secondary-color transition"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
-                <div class="w-full md:w-1/4 mb-8 md:mb-0">
-                    <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-4">Enlaces Rápidos</h3>
                     <ul class="space-y-2">
                         <li><a href="#about" class="hover:text-secondary-color transition">Nosotros</a></li>
                         <li><a href="#services" class="hover:text-secondary-color transition">Servicios</a></li>
@@ -582,110 +570,51 @@
                         <li><a href="#contact" class="hover:text-secondary-color transition">Contacto</a></li>
                     </ul>
                 </div>
-                <div class="w-full md:w-1/4 mb-8 md:mb-0">
-                    <h3 class="text-lg font-semibold mb-4">Contacto</h3>
-                    <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i>123 Calle Principal, Miami, FL 33101</p>
-                    <p class="mb-2"><i class="fas fa-phone mr-2"></i>(305) 123-4567</p>
-                    <p class="mb-2"><i class="fas fa-envelope mr-2"></i>info@edautodetailing.com</p>
+                <div class="w-full md:w-1/4 mb-6 md:mb-0">
+                    <h3 class="text-xl font-semibold mb-4">Contáctanos</h3>
+                    <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> Miami, Florida 33101</p>
+                    <p class="mb-2"><i class="fas fa-phone mr-2"></i> +1 939 270-9413</p>
+                    <p class="mb-2"><i class="fas fa-envelope mr-2"></i> info@edautodetailing.com</p>
                 </div>
                 <div class="w-full md:w-1/4">
-                    <h3 class="text-lg font-semibold mb-4">Síguenos</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-white hover:text-secondary-color transition"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white hover:text-secondary-color transition"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white hover:text-secondary-color transition"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white hover:text-secondary-color transition"><i class="fab fa-youtube"></i></a>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Horario de Atención</h3>
+                    <p>Lunes - Sábado: 9:00 AM - 6:00 PM</p>
+                    <p>Domingo: Cerrado</p>
                 </div>
             </div>
-            <div class="mt-8 text-center">
-                <p class="text-sm">&copy; 2024 ED Auto Detailing. Todos los derechos reservados.</p>
+            <div class="border-t border-white/10 mt-8 pt-6 text-center">
+                <p>&copy; 2024 ED Auto Detailing. Todos los derechos reservados.</p>
+                <a href="https://horizonowl.com" class="text-secondary-color hover:underline mt-2 inline-block">Powered by Horizon OWL</a>
             </div>
         </div>
     </footer>
 
-    <!-- Bottom Menu for Mobile -->
-    <div class="md:hidden fixed bottom-0 left-0 right-0 bottom-menu">
-        <div class="flex justify-around py-2">
-            <a href="#about" class="text-white hover:text-secondary-color transition"><i class="fas fa-info-circle"></i></a>
-            <a href="#services" class="text-white hover:text-secondary-color transition"><i class="fas fa-car"></i></a>
-            <a href="#gallery" class="text-white hover:text-secondary-color transition"><i class="fas fa-images"></i></a>
-            <a href="#contact" class="text-white hover:text-secondary-color transition"><i class="fas fa-envelope"></i></a>
+    <!-- Bottom Menu with Solid Background -->
+    <nav class="bottom-menu fixed bottom-0 left-0 right-0 py-2 md:hidden">
+        <div class="flex justify-around items-center">
+            <a href="#hero" class="text-white hover:text-secondary-color transition flex flex-col items-center">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs">Inicio</span>
+            </a>
+            <a href="#services" class="text-white hover:text-secondary-color transition flex flex-col items-center">
+                <i class="fas fa-car text-xl"></i>
+                <span class="text-xs">Servicios</span>
+            </a>
+            <a href="#gallery" class="text-white hover:text-secondary-color transition flex flex-col items-center">
+                <i class="fas fa-images text-xl"></i>
+                <span class="text-xs">Galería</span>
+            </a>
+            <button id="installPWA" class="text-white hover:text-secondary-color transition flex flex-col items-center">
+                <i class="fas fa-download text-xl"></i>
+                <span class="text-xs">Instalar</span>
+            </button>
         </div>
-    </div>
+    </nav>
 
-    <!-- Service Modal -->
-    <div id="serviceModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="sm:flex sm:items-start">
-                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="serviceTitle"></h3>
-                            <div class="mt-2">
-                                <p class="text-sm text-gray-500" id="serviceDescription"></p>
-                            </div>
-                            <div class="mt-4">
-                                <h4 class="text-md font-medium text-gray-900">Características:</h4>
-                                <ul class="list-disc list-inside text-sm text-gray-500" id="serviceFeatures"></ul>
-                            </div>
-                            <div class="mt-4">
-                                <p class="text-md font-bold text-primary-color" id="servicePrice"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <a id="serviceWhatsApp" href="#" target="_blank" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                        Consultar por WhatsApp
-                    </a>
-                    <button type="button" class="close mt-3 w-full inline-flex justify-center rounde
-d-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                        Cerrar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gallery Modal -->
-    <div id="galleryModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="fixed inset-0 transition-opacity" aria-hidden="true">
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-            </div>
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                    <div class="swiper gallery-swiper">
-                        <div class="swiper-wrapper">
-                            <!-- Swiper slides will be dynamically added here -->
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </div>
-                    <div class="mt-4">
-                        <p id="galleryDescription" class="text-sm text-gray-500"></p>
-                    </div>
-                </div>
-                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button type="button" class="close w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
-                        Cerrar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- PWA Install Prompt -->
-    <div id="installPWA" class="fixed bottom-20 left-4 right-4 bg-white p-4 rounded-lg shadow-lg hidden items-center justify-between">
-        <span>Instala nuestra app para una mejor experiencia</span>
-        <button class="bg-primary-color text-white px-4 py-2 rounded hover:bg-opacity-90 transition">Instalar</button>
-    </div>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/19392709413" target="_blank" rel="noopener noreferrer" id="whatsapp-button" class="fixed bottom-20 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition-colors z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
 
     <script src="script.js"></script>
 </body>
