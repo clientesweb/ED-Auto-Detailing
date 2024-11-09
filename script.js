@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             const service = button.getAttribute('data-service');
-            // Here you would typically fetch the service details from a database or API
-            // For this example, we'll use hardcoded data
+            // Aquí normalmente obtendrías los detalles del servicio de una base de datos o API
+            // Para este ejemplo, usaremos datos predefinidos
             const serviceDetails = {
                 lavado: {
                     title: "Lavado y Encerado Premium",
