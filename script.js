@@ -36,11 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Service Modal
     const serviceModal = document.getElementById('serviceModal');
     const serviceButtons = document.querySelectorAll('.view-service');
-    const serviceCloseBtn = serviceModal.querySelector('.close');
+    const serviceCloseBtn = serviceModal?.querySelector('.close');
 
     serviceButtons.forEach(button => {
         button.addEventListener('click', () => {
             const service = button.getAttribute('data-service');
+            // Here you would typically fetch the service details from a database or API
+            // For this example, we'll use hardcoded data
             const serviceDetails = {
                 lavado: {
                     title: "Lavado y Encerado Premium",
@@ -69,40 +71,29 @@ document.addEventListener('DOMContentLoaded', function() {
             };
 
             const details = serviceDetails[service];
-            document.getElementById('serviceTitle').textContent = details.title;
-            document.getElementById('serviceDescription').textContent = details.description;
-            document.getElementById('serviceFeatures').innerHTML = details.features.map(feature => `<li>${feature}</li>`).join('');
-            document.getElementById('servicePrice').textContent = details.price;
-            document.getElementById('serviceWhatsApp').href = `https://wa.me/19392709413?text=Hola, estoy interesado en el servicio de ${details.title}`;
+            if (serviceModal && details) {
+                document.getElementById('serviceTitle').textContent = details.title;
+                document.getElementById('serviceDescription').textContent = details.description;
+                document.getElementById('serviceFeatures').innerHTML = details.features.map(feature => `<li>${feature}</li>`).join('');
+                document.getElementById('servicePrice').textContent = details.price;
+                document.getElementById('serviceWhatsApp').href = `https://wa.me/19392709413?text=Hola, estoy interesado en el servicio de ${details.title}`;
 
-            serviceModal.style.display = 'block';
+                serviceModal.style.display = 'block';
+            } else {
+                console.error('Service modal or details not found');
+            }
         });
     });
 
-    serviceCloseBtn.addEventListener('click', () => {
-        serviceModal.style.display = 'none';
-    });
-
-    // Gallery filtering
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const filter = button.getAttribute('data-filter');
-            galleryItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
+    if (serviceCloseBtn) {
+        serviceCloseBtn.addEventListener('click', () => {
+            serviceModal.style.display = 'none';
         });
-    });
+    }
 
     // Gallery Modal
     const galleryModal = document.getElementById('galleryModal');
-    const galleryCloseBtn = galleryModal.querySelector('.close');
+    const galleryCloseBtn = galleryModal?.querySelector('.close');
     const viewWorkButtons = document.querySelectorAll('.view-work');
 
     viewWorkButtons.forEach(button => {
@@ -111,71 +102,88 @@ document.addEventListener('DOMContentLoaded', function() {
             const images = JSON.parse(galleryItem.getAttribute('data-images'));
             const description = galleryItem.getAttribute('data-description');
 
-            const gallerySwiper = new Swiper('.gallery-swiper', {
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-            });
+            if (galleryModal) {
+                const gallerySwiper = new Swiper('.gallery-swiper', {
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
 
-            gallerySwiper.removeAllSlides();
-            images.forEach(image => {
-                gallerySwiper.appendSlide(`
-                    <div class="swiper-slide">
-                        <img src="${image}" alt="Gallery Image" class="w-full h-auto">
-                    </div>
-                `);
-            });
+                gallerySwiper.removeAllSlides();
+                images.forEach(image => {
+                    gallerySwiper.appendSlide(`
+                        <div class="swiper-slide">
+                            <img src="${image}" alt="Gallery Image" class="w-full h-auto">
+                        </div>
+                    `);
+                });
 
-            document.getElementById('galleryDescription').textContent = description;
+                document.getElementById('galleryDescription').textContent = description;
 
-            galleryModal.style.display = 'block';
+                galleryModal.style.display = 'block';
+            } else {
+                console.error('Gallery modal not found');
+            }
         });
     });
 
-    galleryCloseBtn.addEventListener('click', () => {
-        galleryModal.style.display = 'none';
-    });
+    if (galleryCloseBtn) {
+        galleryCloseBtn.addEventListener('click', () => {
+            galleryModal.style.display = 'none';
+        });
+    }
 
     // Mobile Menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('hidden');
-    });
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
+    }
 
-    closeMobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
-
-    // Close mobile menu when a link is clicked
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
+    if (closeMobileMenuBtn && mobileMenu) {
+        closeMobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
         });
-    });
+    }
+
+    // Close mobile menu when a link is clicked
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a');
+    if (mobileMenuLinks) {
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
-    // Form submission
+    // Form submission (you'll need to implement the actual form submission logic)
     const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Aquí deberías implementar la lógica real de envío del formulario
-        alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
-        contactForm.reset();
-    });
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
+            contactForm.reset();
+        });
+    }
 
     // PWA installation
     let deferredPrompt;
@@ -184,21 +192,25 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installPWA.style.display = 'flex';
+        if (installPWA) {
+            installPWA.style.display = 'flex';
+        }
     });
 
-    installPWA.addEventListener('click', (e) => {
-        installPWA.style.display = 'none';
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            deferredPrompt = null;
+    if (installPWA) {
+        installPWA.addEventListener('click', (e) => {
+            installPWA.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
         });
-    });
+    }
 
     console.log("Script cargado y listeners añadidos para los botones 'Ver más' y 'Ver trabajos'.");
 });
