@@ -90,47 +90,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Gallery Modal
-    const galleryModal = document.getElementById('galleryModal');
-    const galleryCloseBtn = galleryModal?.querySelector('.close');
-    const viewWorkButtons = document.querySelectorAll('.view-work');
+const galleryModal = document.getElementById('galleryModal');
+const galleryCloseBtn = galleryModal?.querySelector('.close');
+const viewWorkButtons = document.querySelectorAll('.view-work');
 
-    viewWorkButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const galleryItem = button.closest('.gallery-item');
-            const images = JSON.parse(galleryItem.getAttribute('data-images'));
-            const description = galleryItem.getAttribute('data-description');
+viewWorkButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const galleryItem = button.closest('.gallery-item');
+        const images = JSON.parse(galleryItem.getAttribute('data-images'));
+        const description = galleryItem.getAttribute('data-description');
 
-            if (galleryModal) {
-                const gallerySwiper = new Swiper('.gallery-swiper', {
-                    navigation: {
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    },
-                });
+        if (galleryModal) {
+            const gallerySwiper = new Swiper('.gallery-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 10,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                },
+            });
 
-                gallerySwiper.removeAllSlides();
-                images.forEach(image => {
-                    gallerySwiper.appendSlide(`
-                        <div class="swiper-slide">
-                            <img src="${image}" alt="Gallery Image" class="w-full h-auto">
-                        </div>
-                    `);
-                });
+            gallerySwiper.removeAllSlides();
+            images.forEach(image => {
+                gallerySwiper.appendSlide(`
+                    <div class="swiper-slide">
+                        <img src="${image}" alt="Gallery Image" class="w-full h-auto">
+                    </div>
+                `);
+            });
 
-                document.getElementById('galleryDescription').textContent = description;
+            document.getElementById('galleryDescription').textContent = description;
 
-                galleryModal.style.display = 'block';
-            } else {
-                console.error('Gallery modal not found');
-            }
-        });
+            galleryModal.style.display = 'block';
+        } else {
+            console.error('Gallery modal not found');
+        }
     });
+});
 
-    if (galleryCloseBtn) {
-        galleryCloseBtn.addEventListener('click', () => {
-            galleryModal.style.display = 'none';
-        });
-    }
+if (galleryCloseBtn) {
+    galleryCloseBtn.addEventListener('click', () => {
+        galleryModal.style.display = 'none';
+    });
+}
+
 
     // Mobile Menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -211,4 +214,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     console.log("Script cargado y listeners añadidos para los botones 'Ver más' y 'Ver trabajos'.");
+});
+// Filtrado de la galería
+const filterButtons = document.querySelectorAll('.filter-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        
+        // Actualizar botones activos
+        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-primary-color', 'text-white'));
+        filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'text-gray-700'));
+        button.classList.add('active', 'bg-primary-color', 'text-white');
+        button.classList.remove('bg-gray-200', 'text-gray-700');
+
+        // Filtrar elementos de la galería
+        galleryItems.forEach(item => {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                item.style.display = 'block';
+                item.classList.add('fade-in');
+            } else {
+                item.style.display = 'none';
+                item.classList.remove('fade-in');
+            }
+        });
+    });
 });
