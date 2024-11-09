@@ -124,20 +124,6 @@
         .footer-spacing {
             padding-bottom: calc(4rem + env(safe-area-inset-bottom));
         }
-
-        .filter-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            background-color: #f3f4f6;
-            color: #374151;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active {
-            background-color: #8B0000;
-            color: white;
-        }
     </style>
 </head>
 <body class="font-sans">
@@ -321,13 +307,6 @@
         <section id="gallery" class="py-16 bg-gray-100">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Nuestra Galería</h2>
-                <div class="flex justify-center space-x-4 mb-8">
-                    <button class="filter-btn active" data-filter="all">Todos</button>
-                    <button class="filter-btn" data-filter="lavado">Lavado</button>
-                    <button class="filter-btn" data-filter="interior">Interior</button>
-                    <button class="filter-btn" data-filter="pintura">Pintura</button>
-                    <button class="filter-btn" data-filter="ceramica">Cerámica</button>
-                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     <!-- Gallery Item -->
                     <div class="gallery-item" data-category="lavado" data-images='[
@@ -405,16 +384,6 @@
                             <iframe src="https://www.instagram.com/reel/EXAMPLE3/embed" class="w-full h-[600px] rounded-lg shadow-lg" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- YouTube Video Section -->
-        <section id="youtube-video" class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Nuestro Canal de YouTube</h2>
-                <div class="aspect-w-16 aspect-h-9">
-                    <iframe class="w-full h-[500px]" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </section>

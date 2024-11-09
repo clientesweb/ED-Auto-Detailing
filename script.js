@@ -33,24 +33,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     setInterval(rotateBanner, 5000); // Rotate every 5 seconds
 
-    // Fix for top banner buttons
-    const bannerButtons = document.querySelectorAll('#top-banner .banner-item a');
-    bannerButtons.forEach(button => {
-        button.style.color = '#8B0000'; // Set text color to primary color
-        button.style.backgroundColor = 'white'; // Ensure background is white
-    });
-
     // Service Modal
     const serviceModal = document.getElementById('serviceModal');
     const serviceButtons = document.querySelectorAll('.view-service');
     const serviceCloseBtn = serviceModal.querySelector('.close');
 
     serviceButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
+        button.addEventListener('click', () => {
             const service = button.getAttribute('data-service');
-            // Aquí normalmente obtendrías los detalles del servicio de una base de datos o API
-            // Para este ejemplo, usaremos datos predefinidos
+            // Here you would typically fetch the service details from a database or API
+            // For this example, we'll use hardcoded data
             const serviceDetails = {
                 lavado: {
                     title: "Lavado y Encerado Premium",
@@ -93,52 +85,22 @@ document.addEventListener('DOMContentLoaded', function() {
         serviceModal.style.display = 'none';
     });
 
-    // Cerrar el modal al hacer clic fuera de él
-    window.addEventListener('click', (e) => {
-        if (e.target === serviceModal) {
-            serviceModal.style.display = 'none';
-        }
-    });
+    // Gallery filtering
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
 
-    // Modern gallery filter
-    const galleryFilter = () => {
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filter = button.getAttribute('data-filter');
-                
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                galleryItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                        item.classList.add('fade-in');
-                        setTimeout(() => item.classList.remove('fade-in'), 500);
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            galleryItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
             });
         });
-    };
-
-    galleryFilter();
-
-    // Add fade-in animation class
-    const style = document.createElement('style');
-    style.textContent = `
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    `;
-    document.head.appendChild(style);
+    });
 
     // Gallery Modal
     const galleryModal = document.getElementById('galleryModal');
@@ -146,8 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const viewWorkButtons = document.querySelectorAll('.view-work');
 
     viewWorkButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
+        button.addEventListener('click', () => {
             const galleryItem = button.closest('.gallery-item');
             const images = JSON.parse(galleryItem.getAttribute('data-images'));
             const description = galleryItem.getAttribute('data-description');
@@ -169,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             document.getElementById('galleryDescription').textContent = description;
+
             galleryModal.style.display = 'block';
         });
     });
@@ -177,29 +139,25 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryModal.style.display = 'none';
     });
 
-    // Cerrar el modal al hacer clic fuera de él
-    window.addEventListener('click', (e) => {
-        if (e.target === galleryModal) {
-            galleryModal.style.display = 'none';
-        }
-    });
-
     // Mobile Menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    function toggleMobileMenu() {
-        mobileMenu.classList.toggle('hidden');
-    }
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+    });
 
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    closeMobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+    });
 
-    // Cerrar el menú móvil al hacer clic en un enlace
+    // Close mobile menu when a link is clicked
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', toggleMobileMenu);
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
     });
 
     // Smooth scrolling for anchor links
