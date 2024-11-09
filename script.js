@@ -240,3 +240,16 @@ filterButtons.forEach(button => {
         });
     });
 });
+
+// FAQ Accordion
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const arrow = question.querySelector('span:last-child');
+        
+        answer.classList.toggle('hidden');
+        arrow.style.transform = answer.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+    });
+});
