@@ -93,6 +93,14 @@ document.addEventListener('DOMContentLoaded', function() {
         serviceModal.style.display = 'none';
     });
 
+    // Cerrar el modal al hacer clic fuera de él
+    window.addEventListener('click', (e) => {
+        if (e.target === serviceModal) {
+            serviceModal.style.display = 'none';
+        }
+    });
+
+
     // Modern gallery filter
     const galleryFilter = () => {
         const filterButtons = document.querySelectorAll('.filter-btn');
@@ -162,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             document.getElementById('galleryDescription').textContent = description;
-
             galleryModal.style.display = 'block';
         });
     });
@@ -171,20 +178,27 @@ document.addEventListener('DOMContentLoaded', function() {
         galleryModal.style.display = 'none';
     });
 
+    // Cerrar el modal al hacer clic fuera de él
+    window.addEventListener('click', (e) => {
+        if (e.target === galleryModal) {
+            galleryModal.style.display = 'none';
+        }
+    });
+
     // Mobile Menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
 
     mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.toggle('hidden');
     });
 
     closeMobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
     });
 
-    // Close mobile menu when a link is clicked
+    // Cerrar el menú móvil al hacer clic en un enlace
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', () => {
