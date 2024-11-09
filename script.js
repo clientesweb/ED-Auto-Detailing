@@ -21,110 +21,68 @@ document.addEventListener('DOMContentLoaded', function() {
         },
     });
 
-    // Initialize Swiper for services section
-    new Swiper('.services-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        scrollbar: {
-            el: '.swiper-scrollbar',
-            draggable: true,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 3,
-            },
-        },
-    });
+    // Top Banner Rotation
+    const bannerContent = document.querySelector('#top-banner .banner-content');
+    const bannerItems = document.querySelectorAll('#top-banner .banner-item');
+    let currentBannerIndex = 0;
 
-    // Initialize Swiper for testimonials section
-    new Swiper('.testimonials-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        scrollbar: {
-            el: '.swiper-scrollbar',
-            draggable: true,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 3,
-            },
-        },
-    });
+    function rotateBanner() {
+        currentBannerIndex = (currentBannerIndex + 1) % bannerItems.length;
+        bannerContent.style.transform = `translateX(-${currentBannerIndex * 100}%)`;
+    }
 
-    // Initialize Swiper for Instagram Reels section
-    new Swiper('.reels-swiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        scrollbar: {
-            el: '.swiper-scrollbar',
-            draggable: true,
-        },
-        breakpoints: {
-            640: {
-                slidesPerView: 2,
-            },
-            1024: {
-                slidesPerView: 3,
-            },
-        },
-    });
+    setInterval(rotateBanner, 5000); // Rotate every 5 seconds
 
     // Service Modal
     const serviceModal = document.getElementById('serviceModal');
     const serviceButtons = document.querySelectorAll('.view-service');
-    const closeServiceModal = document.getElementById('closeServiceModal');
-
-    const serviceDetails = {
-        lavado: {
-            title: "Lavado y Encerado Premium",
-            description: "Nuestro servicio de lavado y encerado premium deja su vehículo reluciente y protegido contra los elementos.",
-            features: ["Lavado a mano detallado", "Encerado con productos premium", "Limpieza de rines y neumáticos", "Protección UV"],
-            price: "Desde $49.99"
-        },
-        interior: {
-            title: "Detallado Interior Profesional",
-            description: "Revitalice el interior de su vehículo con nuestro servicio de detallado completo.",
-            features: ["Aspirado profundo", "Limpieza de tapicería", "Desinfección completa", "Acondicionamiento de cuero"],
-            price: "Desde $89.99"
-        },
-        pintura: {
-            title: "Corrección de Pintura",
-            description: "Restauramos el brillo original de su vehículo eliminando rayones, remolinos y oxidación.",
-            features: ["Pulido profesional", "Eliminación de rayones", "Corrección de color", "Sellado protector"],
-            price: "Desde $199.99"
-        },
-        ceramica: {
-            title: "Protección Cerámica",
-            description: "Ofrecemos la última tecnología en protección de pintura con nuestro revestimiento cerámico.",
-            features: ["Preparación de superficie", "Aplicación de coating cerámico", "Protección duradera", "Brillo intenso"],
-            price: "Desde $299.99"
-        }
-    };
+    const serviceCloseBtn = serviceModal.querySelector('.close');
 
     serviceButtons.forEach(button => {
         button.addEventListener('click', () => {
             const service = button.getAttribute('data-service');
+            // Here you would typically fetch the service details from a database or API
+            // For this example, we'll use hardcoded data
+            const serviceDetails = {
+                lavado: {
+                    title: "Lavado y Encerado Premium",
+                    description: "Nuestro servicio de lavado y encerado premium deja su vehículo reluciente y protegido contra los elementos.",
+                    features: ["Lavado a mano detallado", "Encerado con productos premium", "Limpieza de rines y neumáticos", "Protección UV"],
+                    price: "Desde $49.99"
+                },
+                interior: {
+                    title: "Detallado Interior Profesional",
+                    description: "Revitalice el interior de su vehículo con nuestro servicio de detallado completo.",
+                    features: ["Aspirado profundo", "Limpieza de tapicería", "Desinfección completa", "Acondicionamiento de cuero"],
+                    price: "Desde $89.99"
+                },
+                pintura: {
+                    title: "Corrección de Pintura",
+                    description: "Restauramos el brillo original de su vehículo eliminando rayones, remolinos y oxidación.",
+                    features: ["Pulido profesional", "Eliminación de rayones", "Corrección de color", "Sellado protector"],
+                    price: "Desde $199.99"
+                },
+                ceramica: {
+                    title: "Protección Cerámica",
+                    description: "Ofrecemos la última tecnología en protección de pintura con nuestro revestimiento cerámico.",
+                    features: ["Preparación de superficie", "Aplicación de coating cerámico", "Protección duradera", "Brillo intenso"],
+                    price: "Desde $299.99"
+                }
+            };
+
             const details = serviceDetails[service];
             document.getElementById('serviceTitle').textContent = details.title;
             document.getElementById('serviceDescription').textContent = details.description;
             document.getElementById('serviceFeatures').innerHTML = details.features.map(feature => `<li>${feature}</li>`).join('');
             document.getElementById('servicePrice').textContent = details.price;
             document.getElementById('serviceWhatsApp').href = `https://wa.me/19392709413?text=Hola, estoy interesado en el servicio de ${details.title}`;
-            serviceModal.classList.remove('hidden');
+
+            serviceModal.style.display = 'block';
         });
     });
 
-    closeServiceModal.addEventListener('click', () => {
-        serviceModal.classList.add('hidden');
+    serviceCloseBtn.addEventListener('click', () => {
+        serviceModal.style.display = 'none';
     });
 
     // Gallery filtering
@@ -146,14 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Gallery Modal
     const galleryModal = document.getElementById('galleryModal');
-    const closeGalleryModal = document.getElementById('closeGalleryModal');
+    const galleryCloseBtn = galleryModal.querySelector('.close');
     const viewWorkButtons = document.querySelectorAll('.view-work');
 
     viewWorkButtons.forEach(button => {
         button.addEventListener('click', () => {
             const galleryItem = button.closest('.gallery-item');
-            const image = galleryItem.querySelector('img');
-            const category = galleryItem.getAttribute('data-category');
+            const images = JSON.parse(galleryItem.getAttribute('data-images'));
+            const description = galleryItem.getAttribute('data-description');
 
             const gallerySwiper = new Swiper('.gallery-swiper', {
                 navigation: {
@@ -163,20 +121,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             gallerySwiper.removeAllSlides();
-            gallerySwiper.appendSlide(`
-                <div class="swiper-slide">
-                    <img src="${image.src}" alt="${image.alt}" class="w-full h-auto">
-                </div>
-            `);
+            images.forEach(image => {
+                gallerySwiper.appendSlide(`
+                    <div class="swiper-slide">
+                        <img src="${image}" alt="Gallery Image" class="w-full h-auto">
+                    </div>
+                `);
+            });
 
-            document.getElementById('galleryDescription').textContent = `Categoría: ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+            document.getElementById('galleryDescription').textContent = description;
 
-            galleryModal.classList.remove('hidden');
+            galleryModal.style.display = 'block';
         });
     });
 
-    closeGalleryModal.addEventListener('click', () => {
-        galleryModal.classList.add('hidden');
+    galleryCloseBtn.addEventListener('click', () => {
+        galleryModal.style.display = 'none';
     });
 
     // Mobile Menu
@@ -200,12 +160,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Preloader
-    window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        preloader.style.display = 'none';
-    });
-
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -225,25 +179,26 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.reset();
     });
 
-    // PWA Install Button
+    // PWA installation
     let deferredPrompt;
     const installPWA = document.getElementById('installPWA');
 
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installPWA.classList.remove('hidden');
+        installPWA.style.display = 'flex';
     });
 
-    installPWA.addEventListener('click', async () => {
-        if (deferredPrompt) {
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            if (outcome === 'accepted') {
+    installPWA.addEventListener('click', (e) => {
+        installPWA.style.display = 'none';
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
                 console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
             }
             deferredPrompt = null;
-        }
-        installPWA.classList.add('hidden');
+        });
     });
 });
