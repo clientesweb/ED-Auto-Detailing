@@ -1,0 +1,170 @@
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+[x-cloak] { 
+    display: none !important; 
+}
+
+body {
+    background: linear-gradient(to bottom, #B8860B, #8B0000);
+}
+
+.fixed {
+    position: fixed;
+}
+
+.bottom-4 {
+    bottom: 1rem;
+}
+
+.right-4 {
+    right: 1rem;
+}
+
+.z-50 {
+    z-index: 50;
+}
+
+/* Instagram Reels Styling */
+.reel {
+    width: 315px;
+    height: 560px;
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.reel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    padding: 20px;
+    color: white;
+}
+
+/* Service Card Styling */
+.service-card {
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.service-card-content {
+    padding: 20px;
+}
+
+.service-card h3 {
+    color: #B8860B;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.service-card p {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.service-card a {
+    display: inline-block;
+    background-color: #8B0000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.service-card a:hover {
+    background-color: #B8860B;
+}
+
+/* Gallery Item Styling */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+    opacity: 1;
+}
+
+.gallery-item-overlay a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.gallery-item-overlay a:hover {
+    background-color: white;
+    color: #B8860B;
+}
