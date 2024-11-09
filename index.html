@@ -70,18 +70,26 @@
         }
         
         #top-banner {
-            background: var(--primary-color);
-            overflow: hidden;
-        }
-        
-        #top-banner .banner-content {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-        
-        #top-banner .banner-item {
-            flex: 0 0 100%;
-        }
+    background: var(--primary-color, #1a73e8); /* Color por defecto si la variable no está definida */
+    overflow: hidden;
+}
+
+#top-banner .banner-content {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+#top-banner .banner-item {
+    flex: 0 0 100%;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.text-primary-color {
+    color: var(--primary-color, #1a73e8);
+}
         
         .bottom-menu {
             background: var(--primary-color);
@@ -129,21 +137,21 @@
 <body class="font-sans">
     <!-- Top Banner with CTAs -->
     <div id="top-banner" class="py-2 text-white relative">
-        <div class="banner-content flex">
-            <div class="banner-item flex items-center justify-center w-full">
-                <span class="mr-4">🎉 ¡20% de descuento en todos los servicios este mes!</span>
-                <a href="#services" class="bg-white text-primary-color px-4 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg">Ver Ofertas</a>
-            </div>
-            <div class="banner-item flex items-center justify-center w-full">
-                <span class="mr-4">🌟 Nuevo servicio de protección cerámica disponible</span>
-                <a href="#services" class="bg-white text-primary-color px-4 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg">Conocer Más</a>
-            </div>
-            <div class="banner-item flex items-center justify-center w-full">
-                <span class="mr-4">🚗 Reserva tu cita hoy y obtén un lavado gratis</span>
-                <a href="#contact" class="bg-white text-primary-color px-4 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg">Reservar</a>
-            </div>
+    <div class="banner-content flex">
+        <div class="banner-item flex items-center justify-center w-full">
+            <span class="mr-4">🎉 ¡20% de descuento en todos los servicios este mes!</span>
+            <a href="#services" class="bg-white text-primary-color px-4 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg">Ver Ofertas</a>
+        </div>
+        <div class="banner-item flex items-center justify-center w-full">
+            <span class="mr-4">🌟 Nuevo servicio de protección cerámica disponible</span>
+            <a href="#services" class="bg-white text-primary-color px-4 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg">Conocer Más</a>
+        </div>
+        <div class="banner-item flex items-center justify-center w-full">
+            <span class="mr-4">🚗 Reserva tu cita hoy y obtén un lavado gratis</span>
+            <a href="#contact" class="bg-white text-primary-color px-4 py-2 rounded-full text-sm font-bold hover:bg-opacity-90 transition-all shadow-md hover:shadow-lg">Reservar</a>
         </div>
     </div>
+</div>
 
     <!-- Header -->
     <header class="sticky top-0 gradient-bg bg-opacity-90 backdrop-blur-md z-40">
