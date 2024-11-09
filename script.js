@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
     // Modern gallery filter
     const galleryFilter = () => {
         const filterButtons = document.querySelectorAll('.filter-btn');
@@ -190,20 +189,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    mobileMenuBtn.addEventListener('click', () => {
+    function toggleMobileMenu() {
         mobileMenu.classList.toggle('hidden');
-    });
+    }
 
-    closeMobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
     // Cerrar el menú móvil al hacer clic en un enlace
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-        });
+        link.addEventListener('click', toggleMobileMenu);
     });
 
     // Smooth scrolling for anchor links
