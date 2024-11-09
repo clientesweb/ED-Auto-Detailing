@@ -1,11 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS
-    AOS.init();
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
+
+    // Initialize Swiper for hero section
+    new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: {
+            delay: 5000,
+        },
+    });
+
+    // Initialize Swiper for about section
+    new Swiper('.about-swiper', {
+        loop: true,
+        autoplay: {
+            delay: 3000,
+        },
+    });
 
     // Top Banner Rotation
-    const banner = document.getElementById('top-banner');
-    const bannerContent = banner.querySelector('.banner-content');
-    const bannerItems = banner.querySelectorAll('.banner-item');
+    const bannerContent = document.querySelector('#top-banner .banner-content');
+    const bannerItems = document.querySelectorAll('#top-banner .banner-item');
     let currentBannerIndex = 0;
 
     function rotateBanner() {
@@ -13,79 +31,67 @@ document.addEventListener('DOMContentLoaded', function() {
         bannerContent.style.transform = `translateX(-${currentBannerIndex * 100}%)`;
     }
 
-    setInterval(rotateBanner, 5000);
+    setInterval(rotateBanner, 5000); // Rotate every 5 seconds
 
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    closeMobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
-
-    // Smooth Scrolling for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-            // Close mobile menu if open
-            mobile
-
-Menu.classList.add('hidden');
-        });
-    });
-
-    // Initialize Swiper for Hero Section
-    new Swiper('.hero-swiper', {
-        loop: true,
-        autoplay: {
-            delay: 5000,
-        },
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true
-        },
-    });
-
-    // Initialize Swiper for About Section
-    new Swiper('.about-swiper', {
-        loop: true,
-        autoplay: {
-            delay: 3000,
-        },
-        effect: 'slide',
-    });
-
-    // Service Buttons Click Handlers
+    // Service Modal
+    const serviceModal = document.getElementById('serviceModal');
     const serviceButtons = document.querySelectorAll('.view-service');
+    const serviceCloseBtn = serviceModal.querySelector('.close');
+
     serviceButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
+        button.addEventListener('click', () => {
             const service = button.getAttribute('data-service');
-            // Here you would typically show more details about the service
-            // For now, we'll just log to console
-            console.log(`Showing details for ${service} service`);
+            // Here you would typically fetch the service details from a database or API
+            // For this example, we'll use hardcoded data
+            const serviceDetails = {
+                lavado: {
+                    title: "Lavado y Encerado Premium",
+                    description: "Nuestro servicio de lavado y encerado premium deja su vehículo reluciente y protegido contra los elementos.",
+                    features: ["Lavado a mano detallado", "Encerado con productos premium", "Limpieza de rines y neumáticos", "Protección UV"],
+                    price: "Desde $49.99"
+                },
+                interior: {
+                    title: "Detallado Interior Profesional",
+                    description: "Revitalice el interior de su vehículo con nuestro servicio de detallado completo.",
+                    features: ["Aspirado profundo", "Limpieza de tapicería", "Desinfección completa", "Acondicionamiento de cuero"],
+                    price: "Desde $89.99"
+                },
+                pintura: {
+                    title: "Corrección de Pintura",
+                    description: "Restauramos el brillo original de su vehículo eliminando rayones, remolinos y oxidación.",
+                    features: ["Pulido profesional", "Eliminación de rayones", "Corrección de color", "Sellado protector"],
+                    price: "Desde $199.99"
+                },
+                ceramica: {
+                    title: "Protección Cerámica",
+                    description: "Ofrecemos la última tecnología en protección de pintura con nuestro revestimiento cerámico.",
+                    features: ["Preparación de superficie", "Aplicación de coating cerámico", "Protección duradera", "Brillo intenso"],
+                    price: "Desde $299.99"
+                }
+            };
+
+            const details = serviceDetails[service];
+            document.getElementById('serviceTitle').textContent = details.title;
+            document.getElementById('serviceDescription').textContent = details.description;
+            document.getElementById('serviceFeatures').innerHTML = details.features.map(feature => `<li>${feature}</li>`).join('');
+            document.getElementById('servicePrice').textContent = details.price;
+            document.getElementById('serviceWhatsApp').href = `https://wa.me/19392709413?text=Hola, estoy interesado en el servicio de ${details.title}`;
+
+            serviceModal.style.display = 'block';
         });
+    });
+
+    serviceCloseBtn.addEventListener('click', () => {
+        serviceModal.style.display = 'none';
     });
 
     // Gallery filtering
-    const filterButtons = document.querySelectorAll('.filter-button');
+    const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
             const filter = button.getAttribute('data-filter');
-            
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-
             galleryItems.forEach(item => {
                 if (filter === 'all' || item.getAttribute('data-category') === filter) {
                     item.style.display = 'block';
@@ -96,76 +102,101 @@ Menu.classList.add('hidden');
         });
     });
 
-    // Gallery Item Click Handler
-    const galleryItemButtons = document.querySelectorAll('.view-work');
-    galleryItemButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
+    // Gallery Modal
+    const galleryModal = document.getElementById('galleryModal');
+    const galleryCloseBtn = galleryModal.querySelector('.close');
+    const viewWorkButtons = document.querySelectorAll('.view-work');
+
+    viewWorkButtons.forEach(button => {
+        button.addEventListener('click', () => {
             const galleryItem = button.closest('.gallery-item');
             const images = JSON.parse(galleryItem.getAttribute('data-images'));
             const description = galleryItem.getAttribute('data-description');
-            
-            // Here you would typically show a modal or lightbox with the images and description
-            // For now, we'll just log to console
-            console.log('Gallery Item Images:', images);
-            console.log('Gallery Item Description:', description);
+
+            const gallerySwiper = new Swiper('.gallery-swiper', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+
+            gallerySwiper.removeAllSlides();
+            images.forEach(image => {
+                gallerySwiper.appendSlide(`
+                    <div class="swiper-slide">
+                        <img src="${image}" alt="Gallery Image" class="w-full h-auto">
+                    </div>
+                `);
+            });
+
+            document.getElementById('galleryDescription').textContent = description;
+
+            galleryModal.style.display = 'block';
         });
     });
 
-    // Contact Form Submission
+    galleryCloseBtn.addEventListener('click', () => {
+        galleryModal.style.display = 'none';
+    });
+
+    // Mobile Menu
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+    });
+
+    closeMobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+        });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Form submission (you'll need to implement the actual form submission logic)
     const contactForm = document.getElementById('contactForm');
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const formData = new FormData(contactForm);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const phone = formData.get('phone');
-        const message = formData.get('message');
-
-        // Construct WhatsApp message
-        const whatsappMessage = `Nuevo mensaje de contacto:%0A%0ANombre: ${name}%0AEmail: ${email}%0ATeléfono: ${phone}%0AMensaje: ${message}`;
-        
-        // Open WhatsApp with pre-filled message
-        window.open(`https://wa.me/1234567890?text=${whatsappMessage}`, '_blank');
-
-        // Reset form
+        // Here you would typically send the form data to your server
+        alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
         contactForm.reset();
     });
 
-    // Newsletter Form Submission
-    const newsletterForm = document.getElementById('newsletterForm');
-    newsletterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = newsletterForm.querySelector('input[type="email"]').value;
-
-        // Construct WhatsApp message for newsletter subscription
-        const whatsappMessage = `Nueva suscripción al boletín:%0A%0AEmail: ${email}`;
-        
-        // Open WhatsApp with pre-filled message
-        window.open(`https://wa.me/1234567890?text=${whatsappMessage}`, '_blank');
-
-        // Reset form
-        newsletterForm.reset();
-    });
-
-    // PWA Installation
+    // PWA installation
     let deferredPrompt;
-    const installPWAButton = document.getElementById('installPWA');
+    const installPWA = document.getElementById('installPWA');
 
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installPWAButton.classList.remove('hidden');
+        installPWA.style.display = 'flex';
     });
 
-    installPWAButton.addEventListener('click', (e) => {
-        installPWAButton.classList.add('hidden');
+    installPWA.addEventListener('click', (e) => {
+        installPWA.style.display = 'none';
         deferredPrompt.prompt();
         deferredPrompt.userChoice.then((choiceResult) => {
             if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the A2HS prompt');
+                console.log('User accepted the install prompt');
             } else {
-                console.log('User dismissed the A2HS prompt');
+                console.log('User dismissed the install prompt');
             }
             deferredPrompt = null;
         });
