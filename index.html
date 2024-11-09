@@ -313,9 +313,20 @@
 
         <!-- Gallery Section with Enhanced Details -->
         <section id="gallery" class="py-16 bg-gray-100">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Nuestra Galería</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-8 text-center text-primary-color" data-aos="fade-up">Nuestra Galería</h2>
+        
+        <!-- Botones de filtro -->
+        <div class="flex justify-center mb-8 space-x-4">
+            <button class="filter-btn active px-4 py-2 rounded-full bg-primary-color text-white hover:bg-primary-color-dark transition" data-filter="all">Todos</button>
+            <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-filter="lavado">Lavado</button>
+            <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-filter="interior">Interior</button>
+            <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-filter="pintura">Pintura</button>
+            <button class="filter-btn px-4 py-2 rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 transition" data-filter="ceramica">Cerámica</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
                     <!-- Gallery Item -->
                     <div class="gallery-item" data-category="lavado" data-images='[
                         "/images/gallery/lavado-1.jpg",
@@ -644,11 +655,11 @@
             <div class="swiper-wrapper">
                 <!-- Slides will be added here dynamically -->
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
         </div>
         <p id="galleryDescription" class="mt-4"></p>
         <button class="close absolute top-4 right-4 text-2xl">&times;</button>
+    </div>
+</div>
     </div>
 </div>
 </body>
