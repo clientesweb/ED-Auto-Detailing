@@ -41,8 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
     serviceButtons.forEach(button => {
         button.addEventListener('click', () => {
             const service = button.getAttribute('data-service');
-            // Here you would typically fetch the service details from a database or API
-            // For this example, we'll use hardcoded data
             const serviceDetails = {
                 lavado: {
                     title: "Lavado y Encerado Premium",
