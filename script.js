@@ -36,54 +36,54 @@ document.addEventListener('DOMContentLoaded', function() {
     // Service Modal
     const serviceModal = document.getElementById('serviceModal');
     const serviceButtons = document.querySelectorAll('.view-service');
-    const serviceCloseBtn = serviceModal.querySelector('.close');
+    const serviceCloseBtn = serviceModal ? serviceModal.querySelector('.close') : null;
 
-    serviceButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const service = button.getAttribute('data-service');
-            // Here you would typically fetch the service details from a database or API
-            // For this example, we'll use hardcoded data
-            const serviceDetails = {
-                lavado: {
-                    title: "Lavado y Encerado Premium",
-                    description: "Nuestro servicio de lavado y encerado premium deja su vehículo reluciente y protegido contra los elementos.",
-                    features: ["Lavado a mano detallado", "Encerado con productos premium", "Limpieza de rines y neumáticos", "Protección UV"],
-                    price: "Desde $49.99"
-                },
-                interior: {
-                    title: "Detallado Interior Profesional",
-                    description: "Revitalice el interior de su vehículo con nuestro servicio de detallado completo.",
-                    features: ["Aspirado profundo", "Limpieza de tapicería", "Desinfección completa", "Acondicionamiento de cuero"],
-                    price: "Desde $89.99"
-                },
-                pintura: {
-                    title: "Corrección de Pintura",
-                    description: "Restauramos el brillo original de su vehículo eliminando rayones, remolinos y oxidación.",
-                    features: ["Pulido profesional", "Eliminación de rayones", "Corrección de color", "Sellado protector"],
-                    price: "Desde $199.99"
-                },
-                ceramica: {
-                    title: "Protección Cerámica",
-                    description: "Ofrecemos la última tecnología en protección de pintura con nuestro revestimiento cerámico.",
-                    features: ["Preparación de superficie", "Aplicación de coating cerámico", "Protección duradera", "Brillo intenso"],
-                    price: "Desde $299.99"
-                }
-            };
+    if (serviceButtons.length > 0 && serviceModal && serviceCloseBtn) {
+        serviceButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const service = button.getAttribute('data-service');
+                const serviceDetails = {
+                    lavado: {
+                        title: "Lavado y Encerado Premium",
+                        description: "Nuestro servicio de lavado y encerado premium deja su vehículo reluciente y protegido contra los elementos.",
+                        features: ["Lavado a mano detallado", "Encerado con productos premium", "Limpieza de rines y neumáticos", "Protección UV"],
+                        price: "Desde $49.99"
+                    },
+                    interior: {
+                        title: "Detallado Interior Profesional",
+                        description: "Revitalice el interior de su vehículo con nuestro servicio de detallado completo.",
+                        features: ["Aspirado profundo", "Limpieza de tapicería", "Desinfección completa", "Acondicionamiento de cuero"],
+                        price: "Desde $89.99"
+                    },
+                    pintura: {
+                        title: "Corrección de Pintura",
+                        description: "Restauramos el brillo original de su vehículo eliminando rayones, remolinos y oxidación.",
+                        features: ["Pulido profesional", "Eliminación de rayones", "Corrección de color", "Sellado protector"],
+                        price: "Desde $199.99"
+                    },
+                    ceramica: {
+                        title: "Protección Cerámica",
+                        description: "Ofrecemos la última tecnología en protección de pintura con nuestro revestimiento cerámico.",
+                        features: ["Preparación de superficie", "Aplicación de coating cerámico", "Protección duradera", "Brillo intenso"],
+                        price: "Desde $299.99"
+                    }
+                };
 
-            const details = serviceDetails[service];
-            document.getElementById('serviceTitle').textContent = details.title;
-            document.getElementById('serviceDescription').textContent = details.description;
-            document.getElementById('serviceFeatures').innerHTML = details.features.map(feature => `<li>${feature}</li>`).join('');
-            document.getElementById('servicePrice').textContent = details.price;
-            document.getElementById('serviceWhatsApp').href = `https://wa.me/19392709413?text=Hola, estoy interesado en el servicio de ${details.title}`;
+                const details = serviceDetails[service];
+                document.getElementById('serviceTitle').textContent = details.title;
+                document.getElementById('serviceDescription').textContent = details.description;
+                document.getElementById('serviceFeatures').innerHTML = details.features.map(feature => `<li>${feature}</li>`).join('');
+                document.getElementById('servicePrice').textContent = details.price;
+                document.getElementById('serviceWhatsApp').href = `https://wa.me/19392709413?text=Hola, estoy interesado en el servicio de ${details.title}`;
 
-            serviceModal.style.display = 'block';
+                serviceModal.style.display = 'block';
+            });
         });
-    });
 
-    serviceCloseBtn.addEventListener('click', () => {
-        serviceModal.style.display = 'none';
-    });
+        serviceCloseBtn.addEventListener('click', () => {
+            serviceModal.style.display = 'none';
+        });
+    }
 
     // Gallery filtering
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -104,80 +104,91 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Gallery Modal
     const galleryModal = document.getElementById('galleryModal');
-    const galleryCloseBtn = galleryModal.querySelector('.close');
+    const galleryCloseBtn = galleryModal ? galleryModal.querySelector('.close') : null;
     const viewWorkButtons = document.querySelectorAll('.view-work');
 
-    viewWorkButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const galleryItem = button.closest('.gallery-item');
-            const images = JSON.parse(galleryItem.getAttribute('data-images'));
-            const description = galleryItem.getAttribute('data-description');
+    if (viewWorkButtons.length > 0 && galleryModal && galleryCloseBtn) {
+        viewWorkButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const galleryItem = button.closest('.gallery-item');
+                if (galleryItem) {
+                    const images = JSON.parse(galleryItem.getAttribute('data-images'));
+                    const description = galleryItem.getAttribute('data-description');
 
-            const gallerySwiper = new Swiper('.gallery-swiper', {
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
+                    const gallerySwiper = new Swiper('.gallery-swiper', {
+                        navigation: {
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        },
+                    });
+
+                    gallerySwiper.removeAllSlides();
+                    images.forEach(image => {
+                        gallerySwiper.appendSlide(`
+                            <div class="swiper-slide">
+                                <img src="${image}" alt="Gallery Image" class="w-full h-auto">
+                            </div>
+                        `);
+                    });
+
+                    document.getElementById('galleryDescription').textContent = description;
+                    galleryModal.style.display = 'block';
+                }
             });
-
-            gallerySwiper.removeAllSlides();
-            images.forEach(image => {
-                gallerySwiper.appendSlide(`
-                    <div class="swiper-slide">
-                        <img src="${image}" alt="Gallery Image" class="w-full h-auto">
-                    </div>
-                `);
-            });
-
-            document.getElementById('galleryDescription').textContent = description;
-
-            galleryModal.style.display = 'block';
         });
-    });
 
-    galleryCloseBtn.addEventListener('click', () => {
-        galleryModal.style.display = 'none';
-    });
+        galleryCloseBtn.addEventListener('click', () => {
+            galleryModal.style.display = 'none';
+        });
+    }
 
     // Mobile Menu
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
     const mobileMenu = document.getElementById('mobileMenu');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.remove('hidden');
-    });
+    if (mobileMenuBtn && closeMobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+        });
 
-    closeMobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-    });
-
-    // Close mobile menu when a link is clicked
-    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
+        closeMobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
         });
-    });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    }
 
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
-    // Form submission (you'll need to implement the actual form submission logic)
+    // Form submission
     const contactForm = document.getElementById('contactForm');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Here you would typically send the form data to your server
-        alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
-        contactForm.reset();
-    });
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Here you would typically send the form data to your server
+            alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
+            contactForm.reset();
+        });
+    }
 
     // PWA installation
     let deferredPrompt;
@@ -186,19 +197,32 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
-        installPWA.style.display = 'flex';
+        if (installPWA) {
+            installPWA.style.display = 'flex';
+        }
     });
 
-    installPWA.addEventListener('click', (e) => {
-        installPWA.style.display = 'none';
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                console.log('User accepted the install prompt');
-            } else {
-                console.log('User dismissed the install prompt');
-            }
-            deferredPrompt = null;
+    if (installPWA) {
+        installPWA.addEventListener('click', (e) => {
+            installPWA.style.display = 'none';
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
         });
-    });
+    }
+
+    // WhatsApp button (if needed)
+    const whatsappButton = document.getElementById('whatsapp-button');
+    if (whatsappButton) {
+        whatsappButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.open('https://wa.me/19392709413', '_blank');
+        });
+    }
 });
