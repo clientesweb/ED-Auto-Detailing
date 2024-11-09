@@ -23,7 +23,15 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #B8860B, #8B0000);
+    background: linear-gradient(to bottom, #D4AF37, #B22222);
+}
+
+.bg-primary-light {
+    background-color: rgba(184, 134, 11, 0.1);
+}
+
+.bg-secondary-light {
+    background-color: rgba(139, 0, 0, 0.1);
 }
 
 .fixed {
@@ -167,4 +175,85 @@ body {
 .gallery-item-overlay a:hover {
     background-color: white;
     color: #B8860B;
+}
+
+/* Hero Section Styling */
+#hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+#hero .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+}
+
+#hero h1 {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Bottom Menu Styling */
+.bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #B8860B;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-around;
+    z-index: 40;
+}
+
+.bottom-menu a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.bottom-menu i {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+/* Powered by Horizon OWL */
+.powered-by {
+    position: fixed;
+    bottom: 4rem;
+    right: 1rem;
+    background-color: white;
+    color: #333;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    z-index: 30;
 }
