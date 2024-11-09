@@ -6,37 +6,48 @@
     <title>ED Auto Detailing - Detallado Automotriz de Élite en Miami</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
     <style>
-        @keyframes slide {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+        .swiper-button-next, .swiper-button-prev {
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            padding: 30px 20px;
+            border-radius: 5px;
         }
-
-        .animate-slide {
-            animation: slide 20s linear infinite;
+        .service-modal, .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
         }
-
-        .instagram-media {
-            max-width: 540px;
-            width: 99.375%;
-            width: -webkit-calc(100% - 2px);
-            width: calc(100% - 2px);
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
         }
-
-        .filter-btn.active {
-            background-color: #4A5568;
-            color: white;
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
         }
-
-        .gallery-item {
-            transition: all 0.3s ease;
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
         }
-
-        .gallery-item.hide {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-
         @media (max-width: 640px) {
             .hero-content {
                 background-color: rgba(0, 0, 0, 0.6);
@@ -47,15 +58,6 @@
     </style>
 </head>
 <body class="font-sans">
-    <!-- Top Banner -->
-    <div class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-2 px-4 overflow-hidden">
-        <div id="topBanner" class="flex animate-slide">
-            <p class="text-sm whitespace-nowrap mr-8">🎉 ¡Cotización libre de costo! <a href="#contact" class="underline">Solicita ahora</a></p>
-            <p class="text-sm whitespace-nowrap mr-8">🚗 Llama al +1 939 270-9413 para citas</p>
-            <p class="text-sm whitespace-nowrap">💼 ¡Trabajamos por cita en Miami, Florida!</p>
-        </div>
-    </div>
-
     <!-- Header -->
     <header class="sticky top-0 bg-blue-900 bg-opacity-90 backdrop-blur-md z-40">
         <nav class="container mx-auto px-4 py-3">
@@ -70,9 +72,14 @@
                     <a href="#testimonials" class="text-white hover:text-blue-300 transition">Testimonios</a>
                     <a href="#contact" class="text-white hover:text-blue-300 transition">Contacto</a>
                 </div>
-                <button id="mobileMenuBtn" class="md:hidden text-white">
-                    <i class="fas fa-bars"></i>
-                </button>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
+                    <button id="mobileMenuBtn" class="md:hidden text-white">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </nav>
     </header>
@@ -94,17 +101,41 @@
     <main>
         <!-- Hero Section -->
         <section id="hero" class="relative h-screen">
-            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('img/hero-bg.jpg');"></div>
-            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div class="text-center z-10 hero-content">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Detallado Automotriz de Élite</h1>
-                    <p class="text-xl md:text-2xl mb-8 text-white">Transformamos su vehículo con precisión y pasión en Miami, Florida.</p>
-                    <div class="space-x-4">
-                        <a href="#services" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Nuestros Servicios</a>
-                        <a href="#contact" class="bg-white text-blue-900 px-6 py-2 rounded-full hover:bg-gray-200 transition">Contáctenos</a>
+            <div class="swiper hero-swiper h-full">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide bg-cover bg-center" style="background-image: url('img/hero-1.jpg');">
+                        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center z-10 hero-content">
+                                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Detallado Automotriz de Élite</h1>
+                                <p class="text-xl md:text-2xl mb-8 text-white">Transformamos su vehículo con precisión y pasión en Miami, Florida.</p>
+                                <a href="#services" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Nuestros Servicios</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide bg-cover bg-center" style="background-image: url('img/hero-2.jpg');">
+                        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center z-10 hero-content">
+                                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Experiencia en Detallado</h1>
+                                <p class="text-xl md:text-2xl mb-8 text-white">Más de 10 años brindando servicios de calidad superior.</p>
+                                <a href="#contact" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Contáctenos Hoy</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide bg-cover bg-center" style="background-image: url('img/hero-3.jpg');">
+                        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center z-10 hero-content">
+                                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white">Cuidado Profesional</h1>
+                                <p class="text-xl md:text-2xl mb-8 text-white">Utilizamos productos de primera calidad para proteger su inversión.</p>
+                                <a href="#gallery" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Ver Nuestro Trabajo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </section>
 
@@ -112,14 +143,27 @@
         <section id="about" class="py-16 bg-gray-100">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-center text-blue-900">Sobre Nosotros</h2>
-                <div class="flex flex-wrap items-center">
-                    <div class="w-full md:w-1/2 mb-8 md:mb-0">
-                        <img src="img/about-us.jpg" alt="Nuestro equipo" class="rounded-lg shadow-lg">
+                <div class="flex flex-col items-center">
+                    <div class="w-full max-w-3xl mb-8">
+                        <p class="text-lg mb-4 text-center">ED Auto Detailing es su destino de confianza para el cuidado automotriz de alta calidad en Miami, Florida. Con más de una década de experiencia, nos enorgullecemos de ofrecer servicios de detallado que van más allá de las expectativas.</p>
+                        <p class="text-lg mb-4 text-center">Nuestro equipo de profesionales altamente capacitados utiliza técnicas avanzadas y productos de primera calidad para garantizar que su vehículo reciba el mejor cuidado posible.</p>
                     </div>
-                    <div class="w-full md:w-1/2 md:pl-8">
-                        <p class="text-lg mb-4">ED Auto Detailing es su destino de confianza para el cuidado automotriz de alta calidad en Miami, Florida. Con más de una década de experiencia, nos enorgullecemos de ofrecer servicios de detallado que van más allá de las expectativas.</p>
-                        <p class="text-lg mb-4">Nuestro equipo de profesionales altamente capacitados utiliza técnicas avanzadas y productos de primera calidad para garantizar que su vehículo reciba el mejor cuidado posible.</p>
-                        <p class="text-lg">Ya sea que necesite un lavado básico o un detallado completo, estamos aquí para hacer que su automóvil luzca y se sienta como nuevo.</p>
+                    <div class="w-full max-w-4xl">
+                        <div class="swiper about-swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="img/about-1.jpg" alt="Nuestro equipo" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="img/about-2.jpg" alt="Nuestro taller" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="img/about-3.jpg" alt="Nuestro trabajo" class="w-full h-64 object-cover rounded-lg shadow-lg">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,76 +173,131 @@
         <section id="services" class="py-16 bg-white">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-center text-blue-900">Nuestros Servicios</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <i class="fas fa-car-wash text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Lavado y Encerado</h3>
-                        <p>Limpieza profunda y protección para el exterior de su vehículo.</p>
+                <div class="swiper services-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 rounded-lg p-6 shadow-md">
+                                <i class="fas fa-car-wash text-4xl text-blue-600 mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">Lavado y Encerado</h3>
+                                <p class="mb-4">Limpieza profunda y protección para el exterior de su vehículo.</p>
+                                <button class="view-service bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition" data-service="lavado">Ver Detalles</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 rounded-lg p-6 shadow-md">
+                                <i class="fas fa-spray-can text-4xl text-blue-600 mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">Detallado Interior</h3>
+                                <p class="mb-4">Limpieza minuciosa y acondicionamiento de todos los interiores.</p>
+                                <button class="view-service bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition" data-service="interior">Ver Detalles</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 rounded-lg p-6 shadow-md">
+                                <i class="fas fa-magic text-4xl text-blue-600 mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">Corrección de Pintura</h3>
+                                <p class="mb-4">Eliminación de rayones y restauración del brillo original.</p>
+                                <button class="view-service bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition" data-service="pintura">Ver Detalles</button>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 rounded-lg p-6 shadow-md">
+                                <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">Protección Cerámica</h3>
+                                <p class="mb-4">Aplicación de revestimiento cerámico para una protección duradera.</p>
+                                <button class="view-service bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition" data-service="ceramica">Ver Detalles</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <i class="fas fa-spray-can text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Detallado Interior</h3>
-                        <p>Limpieza minuciosa y acondicionamiento de todos los interiores.</p>
-                    </div>
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <i class="fas fa-magic text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Corrección de Pintura</h3>
-                        <p>Eliminación de rayones y restauración del brillo original.</p>
-                    </div>
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <i class="fas fa-shield-alt text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Protección Cerámica</h3>
-                        <p>Aplicación de revestimiento cerámico para una protección duradera.</p>
-                    </div>
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <i class="fas fa-tint text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Tratamiento de Cuero</h3>
-                        <p>Limpieza, acondicionamiento y protección de superficies de cuero.</p>
-                    </div>
-                    <div class="bg-gray-100 rounded-lg p-6 shadow-md">
-                        <i class="fas fa-window-restore text-4xl text-blue-600 mb-4"></i>
-                        <h3 class="text-xl font-semibold mb-2">Pulido de Faros</h3>
-                        <p>Restauración de faros opacos para mejorar la visibilidad y apariencia.</p>
-                    </div>
+                    <div class="swiper-scrollbar"></div>
                 </div>
             </div>
         </section>
+
+        <!-- Service Modal -->
+        <div id="serviceModal" class="service-modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2 id="serviceTitle" class="text-2xl font-bold mb-4"></h2>
+                <p id="serviceDescription" class="mb-4"></p>
+                <ul id="serviceFeatures" class="list-disc pl-5 mb-4"></ul>
+                <p id="servicePrice" class="text-xl font-bold mb-4"></p>
+                <a id="serviceWhatsApp" href="#" target="_blank" class="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-600 transition">Contactar por WhatsApp</a>
+            </div>
+        </div>
 
         <!-- Gallery Section -->
         <section id="gallery" class="py-16 bg-gray-100">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-center text-blue-900">Nuestra Galería</h2>
-                <div class="flex flex-wrap justify-center space-x-2 mb-8">
-                    <button class="filter-btn px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition mb-2" data-filter="all">Todos</button>
-                    <button class="filter-btn px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition mb-2" data-filter="exterior">Exterior</button>
-                    <button class="filter-btn px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition mb-2" data-filter="interior">Interior</button>
-                    <button class="filter-btn px-4 py-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition mb-2" data-filter="detailing">Detallado</button>
-                </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <div class="gallery-item" data-category="exterior">
-                        <img src="img/gallery-1.jpg" alt="Exterior detailing" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    <div class="gallery-item">
+                        <img src="img/gallery-1.jpg" alt="Trabajo 1" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer">
                     </div>
-                    <div class="gallery-item" data-category="interior">
-                        <img src="img/gallery-2.jpg" alt="Interior cleaning" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    <div class="gallery-item">
+                        <img src="img/gallery-2.jpg" alt="Trabajo 2" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer">
                     </div>
-                    <div class="gallery-item" data-category="detailing">
-                        <img src="img/gallery-3.jpg" alt="Paint correction" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    <div class="gallery-item">
+                        <img src="img/gallery-3.jpg" alt="Trabajo 3" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer">
                     </div>
-                    <div class="gallery-item" data-category="exterior">
-                        <img src="img/gallery-4.jpg" alt="Ceramic coating" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    <div class="gallery-item">
+                        <img src="img/gallery-4.jpg" alt="Trabajo 4" class="w-full h-64 object-cover rounded-lg shadow-md cursor-pointer">
                     </div>
-                    <div class="gallery-item" data-category="interior">
-                        <img src="img/gallery-5.jpg" alt="Leather treatment" class="w-full h-64 object-cover rounded-lg shadow-md">
+                </div>
+                <div class="text-center mt-8">
+                    <button id="viewMoreGallery" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">Ver Más Trabajos</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Modal -->
+        <div id="galleryModal" class="gallery-modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="swiper gallery-swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Gallery images will be dynamically added here -->
                     </div>
-                    <div class="gallery-item" data-category="detailing">
-                        <img src="img/gallery-6.jpg" alt="Wheel detailing" class="w-full h-64 object-cover rounded-lg shadow-md">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+                <div id="galleryDescription" class="mt-4 text-center"></div>
+            </div>
+        </div>
+
+        <!-- Instagram Reels Section -->
+        <section id="instagram-reels" class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center text-blue-900">Nuestros Reels de Instagram</h2>
+                <div class="swiper reels-swiper">
+                    <div class="swiper-wrapper">
+                        <!-- Replace these with actual Instagram Reels embeds -->
+                        <div class="swiper-slide">
+                            <iframe src="https://www.instagram.com/reel/EXAMPLE1/embed" class="instagram-media" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://www.instagram.com/reel/EXAMPLE2/embed" class="instagram-media" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
+                        <div class="swiper-slide">
+                            <iframe src="https://www.instagram.com/reel/EXAMPLE3/embed" class="instagram-media" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                        </div>
                     </div>
-                    <div class="gallery-item" data-category="exterior">
-                        <img src="img/gallery-7.jpg" alt="Exterior polishing" class="w-full h-64 object-cover rounded-lg shadow-md">
-                    </div>
-                    <div class="gallery-item" data-category="interior">
-                        <img src="img/gallery-8.jpg" alt="Dashboard cleaning" class="w-full h-64 object-cover rounded-lg shadow-md">
-                    </div>
+                    <div class="swiper-scrollbar"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube Video Section -->
+        <section id="youtube-video" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold mb-8 text-center text-blue-900">Descubre Nuestro Proceso</h2>
+                <div class="aspect-w-16 aspect-h-9">
+                    <iframe
+                        src="https://www.youtube.com/embed/EXAMPLE_VIDEO_ID"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        class="w-full h-full"
+                    ></iframe>
                 </div>
             </div>
         </section>
@@ -207,19 +306,64 @@
         <section id="testimonials" class="py-16 bg-white">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8 text-center text-blue-900">Lo que Dicen Nuestros Clientes</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                        <p class="mb-4">"ED Auto Detailing hizo un trabajo increíble con mi coche. Parece nuevo otra vez. ¡Altamente recomendado!"</p>
-                        <p class="font-semibold">- María G.</p>
+                <div class="swiper testimonials-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/client-1.jpg" alt="Cliente 1" class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-semibold">María G.</h3>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>"ED Auto Detailing hizo un trabajo increíble con mi coche. Parece nuevo otra vez. ¡Altamente recomendado!"</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/client-2.jpg" alt="Cliente 2" class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-semibold">Carlos R.</h3>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>"Profesionales, puntuales y detallistas. Mi SUV nunca había lucido tan bien. Definitivamente volveré."</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                                <div class="flex items-center mb-4">
+                                    <img src="img/client-3.jpg" alt="Cliente 3" class="w-12 h-12 rounded-full mr-4">
+                                    <div>
+                                        <h3 class="font-semibold">Laura M.</h3>
+                                        <div class="flex text-yellow-400">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p>"La atención al detalle es impresionante. El interior de mi coche quedó impecable. ¡Gracias, ED Auto Detailing!"</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                        <p class="mb-4">"Profesionales, puntuales y detallistas. Mi SUV nunca había lucido tan bien. Definitivamente volveré."</p>
-                        <p class="font-semibold">- Carlos R.</p>
-                    </div>
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                        <p class="mb-4">"La atención al detalle es impresionante. El interior de mi coche quedó impecable. ¡Gracias, ED Auto Detailing!"</p>
-                        <p class="font-semibold">- Laura M.</p>
-                    </div>
+                    <div class="swiper-pagination"></div>
                 </div>
             </div>
         </section>
@@ -306,33 +450,269 @@
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-6 text-center">
-                <p>&copy; 2023 ED Auto Detailing. Todos los derechos reservados.</p>
+                <p>&copy; 2024 ED Auto Detailing. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/19392709413" target="_blank" rel="noopener noreferrer" class="fixed bottom-4 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition-colors z-50">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
+    <!-- Bottom Menu for Mobile -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-blue-900 py-2 md:hidden">
+        <div class="flex justify-around">
+            <a href="#hero" class="text-white hover:text-blue-300 transition flex flex-col items-center">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs">Inicio</span>
+            </a>
+            <a href="#services" class="text-white hover:text-blue-300 transition flex flex-col items-center">
+                <i class="fas fa-car text-xl"></i>
+                <span class="text-xs">Servicios</span>
+            </a>
+            <a href="#gallery" class="text-white hover:text-blue-300 transition flex flex-col items-center">
+                <i class="fas fa-images text-xl"></i>
+                <span class="text-xs">Galería</span>
+            </a>
+            <a href="#contact" class="text-white hover:text-blue-300 transition flex flex-col items-center">
+                <i class="fas fa-envelope text-xl"></i>
+                <span class="text-xs">Contacto</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Powered by Horizon OWL -->
-    <div class="fixed bottom-4 left-4 bg-white text-gray-700 px-2 py-1 rounded-md text-xs">
+    <div class="fixed bottom-16 left-4 bg-white text-gray-700 px-2 py-1 rounded-md text-xs">
         Powered by Horizon OWL
     </div>
 
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/19392709413" target="_blank" rel="noopener noreferrer" class="fixed bottom-20 right-4 bg-green-500 text-white rounded-full p-3 hover:bg-green-600 transition-colors z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
     <script>
+        // Initialize Swiper for hero section
+        new Swiper('.hero-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Initialize Swiper for about section
+        new Swiper('.about-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 3000,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+        // Initialize Swiper for services section
+        new Swiper('.services-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                draggable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+        });
+
+        // Initialize Swiper for testimonials section
+        new Swiper('.testimonials-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // Initialize Swiper for Instagram Reels section
+        new Swiper('.reels-swiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            scrollbar: {
+                el: '.swiper-scrollbar',
+                draggable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        // Service Modal
+        const serviceModal = document.getElementById('serviceModal');
+        const serviceButtons = document.querySelectorAll('.view-service');
+        const closeServiceModal = document.querySelector('#serviceModal .close');
+
+        const services = {
+            lavado: {
+                title: 'Lavado y Encerado',
+                description: 'Nuestro servicio de lavado y encerado deja su vehículo reluciente y protegido.',
+                features: ['Lavado a mano', 'Secado con microfibra', 'Encerado de alta calidad'],
+                price: 'Desde $49.99',
+            },
+            interior: {
+                title: 'Detallado Interior',
+                description: 'Limpieza profunda y acondicionamiento de todos los interiores de su vehículo.',
+                features: ['Aspirado completo', 'Limpieza de tapicería', 'Acondicionamiento de cuero'],
+                price: 'Desde $89.99',
+            },
+            pintura: {
+                title: 'Corrección de Pintura',
+                description: 'Eliminamos rayones y restauramos el brillo original de la pintura de su vehículo.',
+                features: ['Pulido de pintura', 'Eliminación de rayones', 'Sellado protector'],
+                price: 'Desde $199.99',
+            },
+            ceramica: {
+                title: 'Protección Cerámica',
+                description: 'Aplicamos un revestimiento cerámico para una protección duradera y un brillo excepcional.',
+                features: ['Preparación de superficie', 'Aplicación de cerámica', 'Curado y pulido final'],
+                price: 'Desde $299.99',
+            },
+        };
+
+        serviceButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const service = services[button.dataset.service];
+                document.getElementById('serviceTitle').textContent = service.title;
+                document.getElementById('serviceDescription').textContent = service.description;
+                document.getElementById('serviceFeatures').innerHTML = service.features.map(feature => `<li>${feature}</li>`).join('');
+                document.getElementById('servicePrice').textContent = service.price;
+                document.getElementById('serviceWhatsApp').href = `https://wa.me/19392709413?text=Hola, estoy interesado en el servicio de ${service.title}. ¿Podrían darme más información?`;
+                serviceModal.style.display = 'block';
+            });
+        });
+
+        closeServiceModal.addEventListener('click', () => {
+            serviceModal.style.display = 'none';
+        });
+
+        // Gallery Modal
+        const galleryModal = document.getElementById('galleryModal');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        const closeGalleryModal = document.querySelector('#galleryModal .close');
+        const viewMoreGallery = document.getElementById('viewMoreGallery');
+
+        let gallerySwiper;
+
+        function initGallerySwiper() {
+            gallerySwiper = new Swiper('.gallery-swiper', {
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openGalleryModal(index);
+            });
+        });
+
+        viewMoreGallery.addEventListener('click', () => {
+            openGalleryModal(0);
+        });
+
+        function openGalleryModal(startIndex) {
+            const galleryWrapper = document.querySelector('#galleryModal .swiper-wrapper');
+            galleryWrapper.innerHTML = '';
+
+            // Add all gallery images to the modal
+            galleryItems.forEach(item => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                const img = document.createElement('img');
+                img.src = item.src;
+                img.alt = item.alt;
+                img.className = 'w-full h-auto';
+                slide.appendChild(img);
+                galleryWrapper.appendChild(slide);
+            });
+
+            // Initialize or update Swiper
+            if (gallerySwiper) {
+                gallerySwiper.update();
+            } else {
+                initGallerySwiper();
+            }
+
+            // Set the starting slide
+            gallerySwiper.slideTo(startIndex, 0);
+
+            // Update description
+            updateGalleryDescription(startIndex);
+
+            galleryModal.style.display = 'block';
+        }
+
+        function updateGalleryDescription(index) {
+            const descriptions = [
+                'Detallado completo de un deportivo rojo',
+                'Lavado y encerado de una SUV negra',
+                'Corrección de pintura en un sedán plateado',
+                'Aplicación de cerámica en un coupé azul'
+            ];
+            document.getElementById('galleryDescription').textContent = descriptions[index];
+        }
+
+        closeGalleryModal.addEventListener('click', () => {
+            galleryModal.style.display = 'none';
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target == serviceModal) {
+                serviceModal.style.display = 'none';
+            }
+            if (event.target == galleryModal) {
+                galleryModal.style.display = 'none';
+            }
+        });
+
         // Mobile menu functionality
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const closeMobileMenu = document.getElementById('closeMobileMenu');
         const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
 
         mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.toggle('hidden');
         });
 
         closeMobileMenu.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
         });
 
         // Smooth scrolling for anchor links
@@ -345,48 +725,14 @@
             });
         });
 
-        // Gallery filter functionality
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const galleryItems = document.querySelectorAll('.gallery-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const filter = btn.getAttribute('data-filter');
-                
-                filterBtns.forEach(btn => btn.classList.remove('active'));
-                btn.classList.add('active');
-
-                galleryItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.classList.remove('hide');
-                    } else {
-                        item.classList.add('hide');
-                    }
-                });
-            });
-        });
-
         // Form submission (you'll need to implement the actual form submission logic)
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Add your form submission logic here
+            // Implement your form submission logic here
             alert('Gracias por su mensaje. Nos pondremos en contacto pronto.');
             contactForm.reset();
         });
-
-        // Top banner animation
-        const topBanner = document.getElementById('topBanner');
-        setInterval(() => {
-            topBanner.style.transform = 'translateX(-100%)';
-            setTimeout(() => {
-                topBanner.style.transition = 'none';
-                topBanner.style.transform = 'translateX(0)';
-                setTimeout(() => {
-                    topBanner.style.transition = 'transform 20s linear';
-                }, 50);
-            }, 20000);
-        }, 20000);
     </script>
 </body>
 </html>
