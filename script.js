@@ -224,19 +224,18 @@ filterButtons.forEach(button => {
         const filter = button.getAttribute('data-filter');
         
         // Actualizar botones activos
-        filterButtons.forEach(btn => btn.classList.remove('active', 'bg-primary-color', 'text-white'));
-        filterButtons.forEach(btn => btn.classList.add('bg-gray-200', 'text-gray-700'));
-        button.classList.add('active', 'bg-primary-color', 'text-white');
-        button.classList.remove('bg-gray-200', 'text-gray-700');
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
 
         // Filtrar elementos de la galería
         galleryItems.forEach(item => {
             if (filter === 'all' || item.getAttribute('data-category') === filter) {
                 item.style.display = 'block';
-                item.classList.add('fade-in');
+                item.style.animation = 'none';
+                item.offsetHeight; // Trigger reflow
+                item.style.animation = null;
             } else {
                 item.style.display = 'none';
-                item.classList.remove('fade-in');
             }
         });
     });
